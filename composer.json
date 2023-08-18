@@ -1,7 +1,7 @@
 {
-    "name": "bomo/ical-bundle",
+    "name": "dawulli/ical-bundle",
     "description": "Create ics url or file for Symfony 2, 3, 4 and 5",
-    "homepage": "http://github.com/BorisMorel/IcalBundle",
+    "homepage": "https://github.com/DaWulli/IcalBundle",
     "license": "MIT",
     "authors": [
         {
