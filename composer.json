@@ -1,7 +1,7 @@
 {
-    "name": "dawulli/ical-bundle",
+    "name": "venabo/ical-bundle",
     "description": "Create ics url or file for Symfony 2, 3, 4 and 5",
-    "homepage": "https://github.com/DaWulli/IcalBundle",
+    "homepage": "https://github.com/venabo/IcalBundle",
     "license": "MIT",
     "authors": [
         {
@@ -29,7 +29,6 @@
         "psr-4": { "BOMO\\IcalBundle\\": "" }
     },
     "require-dev": {
-        "symfony/http-kernel": "^5.0|^6.0",
         "phpunit/phpunit": "^9.6"
     }
 }
