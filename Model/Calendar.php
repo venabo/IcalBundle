@@ -3,19 +3,14 @@
 namespace BOMO\IcalBundle\Model;
 
 use Kigkonsult\Icalcreator\IcalInterface;
+use Kigkonsult\Icalcreator\Pc;
 use Kigkonsult\Icalcreator\Vcalendar;
 
 class Calendar
 {
-    /**
-     * vCalendar object
-     */
-    private $cal;
+    private vCalendar $cal;
 
-    /**
-     * Timezone object
-     */
-    private $tz;
+    private Timezone $tz;
 
     /**
      * Calendar constructor.
@@ -36,52 +31,52 @@ class Calendar
         }
     }
 
-    public function setMethod($method)
+    public function setMethod(null|string $method): static
     {
         $this->cal->setMethod($method);
 
         return $this;
     }
 
-    public function setUniqueId($uniqId)
+    public function setUniqueId(null|int|string|Pc $uniqId): static
     {
         $this->cal->setUid($uniqId);
 
         return $this;
     }
 
-    public function setName($name)
+    public function setName(null|int|float|string|Pc $name): static
     {
         $this->cal->setXprop(IcalInterface::X_WR_CALNAME, $name);
 
         return $this;
     }
 
-    public function setDescription($desc)
+    public function setDescription(null|int|float|string|Pc $desc): static
     {
         $this->cal->setXprop(IcalInterface::X_WR_CALDESC, $desc);
 
         return $this;
     }
 
-    public function newEvent()
+    public function newEvent(): Event
     {
         return new Event($this->cal->newVevent());
     }
 
-    public function attachEvent(Event $event)
+    public function attachEvent(Event $event): static
     {
         $this->cal->setComponent($event->getEvent());
 
         return $this;
     }
 
-    public function getCalendar()
+    public function getCalendar(): Vcalendar
     {
         return $this->cal;
     }
 
-    public function returnCalendar()
+    public function returnCalendar(): string
     {
         $str = $this->cal->vtimezonePopulate()->createCalendar();
 

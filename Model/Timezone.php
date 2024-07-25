@@ -3,24 +3,16 @@
 namespace BOMO\IcalBundle\Model;
 
 use Kigkonsult\Icalcreator\CalendarComponent;
+use Kigkonsult\Icalcreator\Pc;
 use Kigkonsult\Icalcreator\Vtimezone;
 
 class Timezone
 {
-    /**
-     * vTimezone object
-     */
-    private $tz;
+    private vTimezone $tz;
 
-    /**
-     * @var CalendarComponent
-     */
-    private $standard;
+    private CalendarComponent $standard;
 
-    /**
-     * @var CalendarComponent
-     */
-    private $daylight;
+    private CalendarComponent $daylight;
 
 
     public function __construct(array $config = array())
@@ -28,12 +20,12 @@ class Timezone
         $this->tz = new Vtimezone($config);
     }
 
-    public function getTzid()
+    public function getTzid(): bool|string|Pc
     {
         return $this->tz->getTzid();
     }
 
-    public function setTzid($tzid)
+    public function setTzid(null|string|Pc $tzid): static
     {
         $this->tz->setTzid($tzid);
 
@@ -48,7 +40,7 @@ class Timezone
         }
     }
 
-    public function getTimezone()
+    public function getTimezone(): Vtimezone
     {
         return $this->tz;
     }
@@ -76,18 +68,15 @@ class Timezone
      * @author Florian Steinbauer <florian@acid-design.at>
      *
      * @param array $config
-     *
-     * @return Timezone
      */
-    public function setStandard(array $config = array()){
-
-        $this->standard  = $this->tz->newStandard();
+    public function setStandard(array $config = array()): static
+    {
+        $this->standard = $this->tz->newStandard();
 
         $this->standard->setConfig($config);
 
         return $this;
     }
-
 
     /**
      * This function sets the properties for the STANDARD component
@@ -109,15 +98,14 @@ class Timezone
      *  )
      *  </pre>
      *
-     * @author Florian Steinbauer <florian@acid-design.at>
-     *
      * @param array $config
      *
-     * @return Timezone
+     * @author Florian Steinbauer <florian@acid-design.at>
+     *
      */
-    public function setDaylight(array $config = array()){
-
-        $this->daylight  = $this->tz->newDaylight();
+    public function setDaylight(array $config = array()): static
+    {
+        $this->daylight = $this->tz->newDaylight();
         $this->daylight->setConfig($config);
 
         return $this;

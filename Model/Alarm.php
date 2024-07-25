@@ -2,38 +2,36 @@
 
 namespace BOMO\IcalBundle\Model;
 
+use DateInterval;
+use DateTimeInterface;
+use Kigkonsult\Icalcreator\Pc;
 use Kigkonsult\ICalcreator\Valarm;
 
 class Alarm
 {
-    /**
-     * vAlarm object
-     */
-    private $alarm;
+    private vAlarm $alarm;
 
     public function __construct($object = null)
     {
-        if ($object instanceOf Valarm) {
+        if ($object instanceof Valarm) {
             $this->alarm = $object;
 
         } else {
             $this->alarm = new Valarm();
-
         }
-
     }
 
-    public function setAction($action)
+    public function setAction(string $action): static
     {
-        switch($action) {
-        case 'DISPLAY':
-            $this->alarm->setDescription('Need to be setted');
-            $this->alarm->setTrigger('-PT1H', array('VALUE' => 'DURATION'));
-            break;
+        switch ($action) {
+            case 'DISPLAY':
+                $this->alarm->setDescription('Need to be setted');
+                $this->alarm->setTrigger('-PT1H', array('VALUE' => 'DURATION'));
+                break;
 
-        default:
-            throw new \InvalidArgumentException('Only [DISPLAY] options are available');
-            break;
+            default:
+                throw new \InvalidArgumentException('Only [DISPLAY] options are available');
+                break;
         }
 
         $this->alarm->setAction($action);
@@ -41,21 +39,21 @@ class Alarm
         return $this;
     }
 
-    public function setDescription($desc)
+    public function setDescription(null|string|Pc $desc): static
     {
         $this->alarm->setDescription($desc);
 
         return $this;
     }
 
-    public function setTrigger($str)
+    public function setTrigger(null|string|Pc|DateTimeInterface|DateInterval $str): static
     {
         $this->alarm->setTrigger($str, array('VALUE' => 'DURATION'));
 
         return $this;
     }
 
-    public function getAlarm()
+    public function getAlarm(): Valarm
     {
         return $this->alarm;
     }
