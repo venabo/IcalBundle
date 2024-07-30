@@ -11,12 +11,12 @@ use BOMO\IcalBundle\Model\Timezone,
 
 class IcsProvider
 {
-    public function createTimezone(array $config = array())
+    public function createTimezone(array $config = array()): Timezone
     {
         return new Timezone($config);
     }
 
-    public function createCalendar(Timezone $tz = null, $allowNullTimezone = FALSE)
+    public function createCalendar(Timezone $tz = null, $allowNullTimezone = FALSE): Calendar
     {
         if (is_null($tz) && false === $allowNullTimezone) {
             $tz = $this->createTimezone();
@@ -24,12 +24,12 @@ class IcsProvider
         return new Calendar($tz);
     }
 
-    public function createEvent()
+    public function createEvent(): Event
     {
         return new Event();
     }
 
-    public function createAlarm()
+    public function createAlarm(): Alarm
     {
         return new Alarm();
     }

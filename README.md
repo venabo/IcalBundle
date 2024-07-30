@@ -205,3 +205,9 @@ valarm function getAlarm();
 ## Configuration example
 
 Currently, this bundle doesn't required any configuration section.
+
+## Install dependencies
+
+```bash
+docker run --rm -v $(pwd):/app -w /app composer update
+```

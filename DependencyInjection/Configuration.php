@@ -15,9 +15,9 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritDoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-	$treeBuilder = new TreeBuilder('bomo_ical');
+        $treeBuilder = new TreeBuilder('bomo_ical');
         if (method_exists($treeBuilder, 'getRootNode')) {
             $rootNode = $treeBuilder->getRootNode();
         } else {
