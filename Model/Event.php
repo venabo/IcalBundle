@@ -13,7 +13,7 @@ class Event
     /**
      * To ignore hours
      */
-    private bool $isAllDayEvent;
+    private bool $isAllDayEvent = false;
 
     public function __construct($object = null)
     {
