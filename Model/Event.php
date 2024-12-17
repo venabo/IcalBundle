@@ -9,12 +9,12 @@ class Event
     /**
      * vEvent object
      */
-    private $event;
+    private object $event;
 
     /**
      * To ignore hours
      */
-    private $isAllDayEvent;
+    private bool $isAllDayEvent = false;
 
     public function __construct($object = null)
     {
